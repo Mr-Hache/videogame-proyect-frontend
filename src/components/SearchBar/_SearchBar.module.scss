@@ -1,0 +1,76 @@
+$color-light: #F5F0E1; // Light
+$color-grayish: #BFB6A1; // Grayish
+$color-dark: #634C36; // Dark
+$color-vibrant: #D9A769; // Vibrant
+$color-reddish: #C76969; // Reddish
+$color-green: #7D9C6C; // Green
+$color-blueish: #708C9C; // Blueish
+$color-brown: #8B5A2B; // Brown
+$color-yellow: #DDB851; // Yellow
+$color-orange: #D9823C; // Orange
+$color-light-gray: #66666698;
+$color-darker-gray: #303030; // Darker Gray
+
+.Search_bar{
+    width: 50vw;
+ height: 5vh;
+    background: rgba(255, 255, 255, 0.2) ; // transparencia al fondo de la searchBar
+    display: flex;
+    align-items: center;
+    border-radius: 60px;
+    padding: 15px 30px;
+    position: relative;
+    left: 8vw;
+    bottom: 8vh;
+    transition: 0.5s;
+}
+.Search_bar:hover{
+    scale: 1.1;
+    transition: 0.5s;
+    background: rgba(255, 255, 255, 0.397) ; // transparencia al fondo de la searchBar
+}
+
+.Search_bar__input{
+   background: transparent;
+   flex: 1;
+   border: 0;
+   outline: none;
+   padding: 24px 20px;
+   font-size: 20px;
+   color: $color-light;
+    transition: 0.5s;
+   &::placeholder{
+         color: $color-light;
+   }
+}
+.Search_bar__input:hover{
+  
+    transition: 0.5s;
+    color: white;
+    &::placeholder{
+        color:white;
+  }
+}
+
+.Search_bar__button {
+    border: 0;
+    border-radius: 50%;
+    width: 120%;
+    height: 200%;
+    background: $color-light-gray;
+    cursor: pointer;
+    padding: 8px;
+    transition: 0.5s;
+    
+}
+.Search_bar__button:hover{
+    background: $color-darker-gray;
+    transition: 0.5s;
+    scale:1.2;
+}
+
+
+.Search_bar__button__icon{
+width: 80%;
+}
+

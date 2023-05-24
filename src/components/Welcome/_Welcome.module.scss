@@ -1,0 +1,113 @@
+$color-light: #F5F0E1; // Light
+$color-grayish: #BFB6A1; // Grayish
+$color-dark: #634C36; // Dark
+$color-vibrant: #D9A769; // Vibrant
+$color-reddish: #C76969; // Reddish
+$color-green: #7D9C6C; // Green
+$color-blueish: #708C9C; // Blueish
+$color-brown: #8B5A2B; // Brown
+$color-yellow: #DDB851; // Yellow
+$color-orange: #D9823C; // Orange
+
+.Container {
+  background-image: url("./../../images/background.png");
+  background-repeat: repeat; //se repite la imagen hasta llenar el contenedor
+  background-position: 0 0; // posicion donde incia la imagen
+  background-attachment: fixed; // la imagen se fija en la posicion
+  background-size: 100% 100%; // la imagen se adapta al tamaño del contenedor
+  height: 100vh; // el contenedor ocupa todo el alto de la pantalla
+  display: flex; // permite alinear los elementos de forma horizontal
+  border-radius: 5px; // redondenado los bordes del contenedor
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5); // sombra al contenedor
+  text-align: center; // alinea el texto al centro
+  filter: sepia(0.4); // filtro sepia al boton
+}
+
+.title {
+    font-family: "Montserrat", sans-serif; // fuente del texto
+  font-size: 3rem; // tamaño de la fuente
+  color: $color-grayish; // color de la fuente
+  transition: 0.5s; // tiempo de transicion
+  -webkit-text-stroke-width: 1px; // ancho del borde
+  -webkit-text-stroke-color:$color-brown;
+  backdrop-filter: blur(3px); // difuminado al fondo del elemento;
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+
+.title:hover {
+  color:$color-light;
+  scale: 1.3; // escala el texto al pasar el mouse
+  transition: 0.5s; // tiempo de transicion
+  -webkit-text-stroke-color:$color-brown; // color del borde al pasar el mouse
+  -webkit-text-stroke-width: 1.2px; // ancho del borde
+  backdrop-filter: blur(1.2px); // difuminado al fondo del elemento;
+}
+
+.link {
+  position: absolute; // posicion relativa
+  color:$color-light;
+  font-size: 30px;
+  text-transform: uppercase; // transforma el texto a mayusculas
+  font-family: "Montserrat", sans-serif; // fuente del texto
+  text-decoration: none; // quita la decoracion del texto
+  cursor: pointer; // cursor de la mano
+  transition: 0.5s; // tiempo de transicion
+  //     margin: 0 20px; // margen entre elementos
+  text-align: center; // alinea el texto al centro
+
+  &::before,
+  &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      transition: width 1s ease;
+  }
+
+  &::before {
+      top: 50%;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: $color-orange;
+  }
+
+  &::after {
+      top: 50%;
+      right: 0;
+      width: 0;
+      height: 1px;
+      background-color: $color-orange;
+  }
+
+  &:hover {
+      color: $color-yellow;
+      transform: scale(1.3); // Aumenta la escala al 120%
+
+      &::before {
+          width: 50%;
+      }
+
+      &::after {
+          width: 50%;
+      }
+  }
+}
+
+
+
+.link_left {
+  @extend .link;
+  top: 75vh;
+  left: 31vw;
+  
+
+}
+
+.link_right {
+  @extend .link;
+
+  top: 75vh;
+  left: 60vw;
+}

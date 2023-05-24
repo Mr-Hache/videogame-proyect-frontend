@@ -1,0 +1,111 @@
+$color-light: #f5f0e1;
+$color-grayish: #bfb6a1;
+$color-dark: #634c36;
+$color-vibrant: #d9a769;
+$color-reddish: #c76969;
+$color-yellow: #ddb851;
+$color-blueish: #708c9c;
+$color-brown: #8b5a2b;
+$color-orange: #d9823c;
+$color-light-gray: #66666698;
+$color-darker-gray: #1A1A1A; // Gris más oscuro
+
+.button {
+  position: relative;
+  display: inline-block;
+  font-size: 3vh;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $color-light;
+  background-color: $color-dark;
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.5s, transform 0.5s;
+  text-align: center;
+  padding: 0 0 1vh;
+  height: 10vh;
+  width: 8vw;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: $color-vibrant;
+  z-index: -1;
+  transition: height 0.5s;
+}
+
+.button:hover {
+  background-color: $color-vibrant;
+  transform: translateY(-2vh);
+  color: $color-darker-gray;
+}
+
+.button:hover::before {
+  height: 100%;
+}
+
+.button:active {
+  transform: translateY(2vh);
+}
+
+.button_1__image {
+  width: 40%;
+  position: relative;
+  top: 1vh;
+}
+
+.button_2__image {
+  width: 25%;
+  position: relative;
+  top: 1vh;
+}
+
+.button_3__image {
+  width: 25%;
+  position: relative;
+  top: 1vh;
+}
+
+.button_1 {
+  @extend .button;
+  left: 65vw;
+  bottom:18vh;
+}
+
+.button_2 {
+  @extend .button;
+  left: 66vw;
+  bottom: 19.5vh;
+  font-size: 2.8vh;
+}
+
+.button_3 {
+  @extend .button;
+  left: 67vw;
+  bottom: 19.5vh;
+  font-size: 2.8vh;
+}
+
+.Image_icon{
+    position: absolute;
+
+    width: 6%;
+    height: 60%;
+    position: relative;
+    top: 5vh;
+    left: 0.5vw;
+    transition: 0.5s;
+}
+
+.Container{
+    background-color: $color-darker-gray ;
+    height: 25vh;
+}

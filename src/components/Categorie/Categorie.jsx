@@ -1,69 +1,103 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { changeFilterByGenre, changeFilterByPlatform, changeFilterBySource } from "../../redux/actions";
-
-
+import { changeFilter } from "../../redux/actions";
+import style from "./_Categorie.module.scss";
 
 const Categorie = (props) => {
-    const { name, nameCategorie } = props;
-    const {filterByPlatform, filterByGenre, filterBySource} = useSelector((state) => state);
+    const { categorie, nameCategorie } = props;
+    const [state, setState] = useState(false);
+    const { filter } = useSelector((state) => state);
     const dispatch = useDispatch();
 
-    const [state, setState] = useState(false);
+    const filterBy = {
+        filterByGenre: filter.filterByGenre,
+        filterByPlatform: filter.filterByPlatform,
+        filterBySource: filter.filterBySource,
+    }
+
+
+    const changeState = (nameCategorie) => {
+
+        if (nameCategorie === "Genres") {
+            if (filter.filterByGenre.name == categorie.name) {
+                setState(!state ? true : state);
+            } else {
+                setState(false);
+            }
+        } else if (nameCategorie === "Platforms") {
+            if (filter.filterByPlatform.name == categorie.name) {
+                setState(!state ? true : state);
+            } else {
+                setState(false);
+            }
+        } else if (nameCategorie === "Sources") {
+            if (filter.filterBySource.name == categorie.name) {
+                setState(!state ? true : state);
+            } else {
+                setState(false);
+            }
+        }
+    }
+    useEffect(() => {
+        changeState(nameCategorie);
+    }, [filter]);
+
+    useEffect(() => {
+        changeState(nameCategorie);
+    }, []);
+
+    useEffect(() => {
+        if (!state) {
+
+            if (nameCategorie === "Genres") {
+                if (categorie.name == filter.filterByGenre.name) {
+                    filterBy.filterByGenre = { id: 0, name: "all" };
+                    dispatch(changeFilter(filterBy));
+                }
+
+            } else if (nameCategorie === "Platforms") {
+                if (categorie.name == filter.filterByPlatform.name) {
+                    filterBy.filterByPlatform = { id: 0, name: "all" };
+                    dispatch(changeFilter(filterBy));
+                }
+            }
+            else if (nameCategorie === "Sources") {
+                if (categorie.name == filter.filterBySource.name) {
+                    filterBy.filterBySource = { id: 0, name: "all" };
+                    dispatch(changeFilter(filterBy));
+                }
+            }
+
+        } else {
+            if (nameCategorie === "Genres") {
+                if (filterBy.filterBySource.name !== categorie.name) {
+                    filterBy.filterByGenre = categorie;
+                    dispatch(changeFilter(filterBy));
+                }
+            } else if (nameCategorie === "Platforms") {
+                if (filterBy.filterBySource.name !== categorie.name) {
+                    filterBy.filterByPlatform = categorie;
+                    dispatch(changeFilter(filterBy));
+                }
+            } else if (nameCategorie === "Sources") {
+                if (filterBy.filterBySource.name !== categorie.name) {
+                    filterBy.filterBySource = categorie;
+                    dispatch(changeFilter(filterBy));
+                }
+            }
+        }
+    }, [state])
+
 
     const handleClick = () => {
         setState(!state);
 
+
     }
-
-    useEffect(() => {
-        if (state) {
-            if (nameCategorie === "genre") {
-                dispatch(changeFilterByGenre(name));
-            }
-            if (nameCategorie === "platform") {
-                dispatch(changeFilterByPlatform(name));
-            }
-            if (nameCategorie === "source") {
-                dispatch(changeFilterBySource(name));
-            }
-        } else{
-            if (nameCategorie === "genre" && filterByGenre === name) {
-                dispatch(changeFilterByGenre(""));
-            }
-            if (nameCategorie === "platform" && filterByPlatform === name) {
-                dispatch(changeFilterByPlatform(""));
-            }
-            if (nameCategorie === "source" && filterBySource === name) {
-                dispatch(changeFilterBySource(""));
-            }
-        }
-    }, [state]);
-    useEffect(() => {
-        if( nameCategorie === "genre" && filterByGenre !== name && filterByGenre !== ""){
-            setState(false);
-        }
-
-    }, [filterByGenre])
-
-    useEffect(() => {
-        if( nameCategorie === "platform" && filterByPlatform !== name && filterByPlatform !== ""){
-            setState(false);
-        }
-
-    }, [filterByPlatform])
-
-    useEffect(() => {
-        if( nameCategorie === "source" && filterBySource !== name && filterBySource !== ""){
-            setState(false);
-        }
-
-    }, [filterBySource])
-
 
     return (
         <div>
-            <h1 onClick={handleClick}>{name}</h1>
+            <h1 className={state? style.Categorie_white: style.Categorie_black} onClick={handleClick}>{categorie.name}</h1>
         </div>
     )
 }

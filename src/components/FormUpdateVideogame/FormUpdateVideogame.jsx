@@ -7,6 +7,7 @@ import FormTemplate from '../FormTemplate/FormTemplate';
 import { useParams } from 'react-router-dom';
 import { getVideogameDetail, cleanVideogameDetail } from '../../redux/actions';
 import { validate as validateUUID } from 'uuid';
+import style from './_FormUpdateVideogame.module.scss';
 
 
 const FormUpdateVideogame = () => {
@@ -35,15 +36,23 @@ const FormUpdateVideogame = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        setVideogame((prevVideogame) => ({
-            ...prevVideogame,
-            name: videogameDetail.name,
-            description: videogameDetail.description,
-            released: videogameDetail.released,
-            rating: videogameDetail.rating,
-            image: videogameDetail.image,
-        }));
+        const videogameCopy = {
+            name: videogameDetail.name ? videogameDetail.name : "",
+            description: videogameDetail.description ? videogameDetail.description : "",
+            released: videogameDetail.released ? videogameDetail.released : "",
+            rating: videogameDetail.rating ? videogameDetail.rating : "",
+            image: videogameDetail.image ? videogameDetail.image : "",
+            platforms: videogameDetail.platforms ? videogameDetail.platforms : [],
+            genres: videogameDetail.genres ? videogameDetail.genres : [],
+        }
+        
+        if (videogameDetail.name) {
+            setVideogame(videogameCopy);
+        }
+
     }, [videogameDetail]);
+
+
 
     const handleInputChange = (e) => {
         setVideogame({
@@ -53,32 +62,31 @@ const FormUpdateVideogame = () => {
     };
 
     const handlePlatforms = (e) => {
-        if (e.target.checked) {
+        e.preventDefault();
+        const platform = e.target.value;
+        // cambiar a select
+        if (videogame.platforms.includes(platform)) {
+            return
+        }
+        else {
             setVideogame({
                 ...videogame,
-                platforms: [...videogame.platforms, e.target.value],
-            });
-        } else {
-            setVideogame({
-                ...videogame,
-                platforms: videogame.platforms.filter(
-                    (platform) => platform !== e.target.value
-                ),
+                platforms: [...videogame.platforms, platform],
             });
         }
-
     };
 
     const handleGenres = (e) => {
-        if (e.target.checked) {
+        e.preventDefault();
+        const genre = e.target.value;
+        // cambiar a select
+        if (videogame.genres.includes(genre)) {
+            return
+        }
+        else {
             setVideogame({
                 ...videogame,
-                genres: [...videogame.genres, e.target.value],
-            });
-        } else {
-            setVideogame({
-                ...videogame,
-                genres: videogame.genres.filter((genre) => genre !== e.target.value),
+                genres: [...videogame.genres, genre],
             });
         }
     };
@@ -86,14 +94,23 @@ const FormUpdateVideogame = () => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
-            const errors = validateForm(videogame);
-            console.log(videogame)
-            if (Object.keys(errors).length === 0) {
+            let platformsId = [];
+            let genresId = [];
+            if (videogame.platforms.length > 0) {
+                platformsId = platforms.filter((platform) => videogame.platforms.includes(platform.name))
+                videogame.platforms = platformsId.map((platform) => platform.id)
+            }
+            if (videogame.genres.length > 0) {
+                genresId = genres.filter((genre) => videogame.genres.includes(genre.name))
+                videogame.genres = genresId.map((genre) => genre.id)
+            }
+           
 
+            const errors = validateForm(videogame);
+            if (Object.keys(errors).length === 0) {
+              console.log(videogame)
                 const response = await sendVideogameUpdate(videogame, id);
                 window.alert(response);
-
-
 
             } else {
 
@@ -104,11 +121,30 @@ const FormUpdateVideogame = () => {
             console.log(error)
         }
     };
+    const handleDeletePlatform = (event) => {
+        event.preventDefault();
+        const value = event.target.value
+        const newPlatforms = videogame.platforms.filter((platform) => platform !== value);
+        setVideogame({
+            ...videogame,
+            platforms: newPlatforms,
+        });
+
+    }
+    const handleDeleteGenre = (event) => {
+        event.preventDefault();
+        const value = event.target.value
+        const newGenres = videogame.genres.filter((genre) => genre !== value);
+        setVideogame({
+            ...videogame,
+            genres: newGenres,
+        });
+
+    }
 
     return (
-        <div>
-            <h1>Update Videogame</h1>
-            <FormTemplate name="Update" handleSubmit={handleSubmit} handleInputChange={handleInputChange} handlePlatforms={handlePlatforms} handleGenres={handleGenres} videogame={videogame} genres={genres} platforms={platforms} id={id} validateId={validateId}></FormTemplate>
+        <div className={style.Container}>
+            <FormTemplate name="Update" handleSubmit={handleSubmit} handleInputChange={handleInputChange} handlePlatforms={handlePlatforms} handleGenres={handleGenres} videogame={videogame} genres={genres} platforms={platforms} id={id} validateId={validateId} handleDeletePlatform={handleDeletePlatform} handleDeleteGenre={handleDeleteGenre}></FormTemplate>
         </div>
     );
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getGenres, getPlatforms } from '../../redux/actions';
 import validateForm from '../../utils/validateForm';
-import {sendVideogameAdd} from '../../utils/sendVideogame';
+import { sendVideogameAdd } from '../../utils/sendVideogame';
 import FormTemplate from '../FormTemplate/FormTemplate';
 
 
@@ -22,10 +22,12 @@ const FormAddVideogame = () => {
     });
 
     useEffect(() => {
-        dispatch(getGenres());
-        dispatch(getPlatforms());
+        if (genres.length === 0 || platforms.length === 0) {
+            dispatch(getGenres());
+            dispatch(getPlatforms());
+        }
 
-    }, [dispatch]);
+    }, []);
 
     const handleInputChange = (e) => {
         setVideogame({
@@ -35,43 +37,74 @@ const FormAddVideogame = () => {
     };
 
     const handlePlatforms = (e) => {
-        if (e.target.checked) {
+        e.preventDefault();
+        const platform = e.target.value;
+        // cambiar a select
+        if (videogame.platforms.includes(platform)) {
+            return
+        }
+        else {
             setVideogame({
                 ...videogame,
-                platforms: [...videogame.platforms, e.target.value],
-            });
-        } else {
-            setVideogame({
-                ...videogame,
-                platforms: videogame.platforms.filter(
-                    (platform) => platform !== e.target.value
-                ),
+                platforms: [...videogame.platforms, platform],
             });
         }
-        
     };
 
     const handleGenres = (e) => {
-        if (e.target.checked) {
+        e.preventDefault();
+        const genre = e.target.value;
+        // cambiar a select
+        if (videogame.genres.includes(genre)) {
+            return
+        }
+        else {
             setVideogame({
                 ...videogame,
-                genres: [...videogame.genres, e.target.value],
-            });
-        } else {
-            setVideogame({
-                ...videogame,
-                genres: videogame.genres.filter((genre) => genre !== e.target.value),
+                genres: [...videogame.genres, genre],
             });
         }
     };
 
-    const handleSubmit = async(e) => {
+    const handleDeletePlatform = (event) => {
+        event.preventDefault();
+        const value = event.target.value
+        const newPlatforms = videogame.platforms.filter((platform) => platform !== value);
+        setVideogame({
+            ...videogame,
+            platforms: newPlatforms,
+        });
+
+    }
+
+    const handleDeleteGenre = (event) => {
+        event.preventDefault();
+        const value = event.target.value
+        const newGenres = videogame.genres.filter((genre) => genre !== value);
+        setVideogame({
+            ...videogame,
+            genres: newGenres,
+        });
+
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        let platformsId = [];
+            let genresId = [];
+            if (videogame.platforms.length > 0) {
+                platformsId = platforms.filter((platform) => videogame.platforms.includes(platform.name))
+                videogame.platforms = platformsId.map((platform) => platform.id)
+            }
+            if (videogame.genres.length > 0) {
+                genresId = genres.filter((genre) => videogame.genres.includes(genre.name))
+                videogame.genres = genresId.map((genre) => genre.id)
+            }
         const errors = validateForm(videogame);
         console.log(videogame)
         if (Object.keys(errors).length === 0) {
             try {
-                const response = await sendVideogameAdd (videogame);
+                const response = await sendVideogameAdd(videogame);
                 window.alert(response);
             } catch (error) {
                 window.alert(error);
@@ -95,8 +128,7 @@ const FormAddVideogame = () => {
 
     return (
         <div>
-            <h1>Add Videogame</h1>
-            <FormTemplate name="Add" handleSubmit={handleSubmit} handleInputChange={handleInputChange} handlePlatforms={handlePlatforms} handleGenres={handleGenres} videogame={videogame} genres={genres} platforms={platforms}></FormTemplate>
+            <FormTemplate name="Add" handleSubmit={handleSubmit} handleInputChange={handleInputChange} handlePlatforms={handlePlatforms} handleGenres={handleGenres} videogame={videogame} genres={genres} platforms={platforms} handleDeleteGenre={handleDeleteGenre} handleDeletePlatform={handleDeletePlatform}></FormTemplate>
         </div>
     );
 }

@@ -1,0 +1,100 @@
+$color-light: #f5f0e1;
+$color-grayish: #bfb6a160;
+$color-dark: #634c36;
+$color-vibrant: #d9a769;
+$color-reddish: #c76969;
+$color-yellow: #ddb851;
+$color-blueish: #708c9c;
+$color-brown: #8b5a2b;
+$color-orange: #d9823c;
+$color-light-gray: #6666662f;
+$color-darker-gray: #1A1A1A;
+
+.Container {
+    position: fixed;
+    top: 30.1vh;
+    right: 35vw;
+    overflow-y: scroll;
+    max-height: 62vh;
+    background-color: $color-darker-gray;
+    padding: 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 30%;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        color: $color-light;
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      input,
+      select {
+        padding: 8px;
+        margin-bottom: 12px;
+        border-radius: 4px;
+        border: none;
+        background-color: $color-grayish;
+        color: $color-darker-gray;
+        
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 12px;
+        display: flex;
+        flex-direction: column; /* Actualización: Cambio de flex-direction */
+
+        li {
+          color: $color-dark;
+          font-size: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 6px;
+
+          button {
+            background-color: transparent;
+            border: none;
+            color: $color-light;
+            cursor: pointer;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: $color-reddish;
+            }
+          }
+        }
+      }
+
+      button[type="submit"] {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 4px;
+        background-color: $color-vibrant;
+        color: $color-light;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $color-reddish;
+          box-shadow: 0px 2px 4px $color-dark;
+        }
+      }
+
+      span {
+        color: $color-light;
+        font-size: 16px;
+      }
+    }
+}

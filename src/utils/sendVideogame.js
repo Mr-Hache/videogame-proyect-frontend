@@ -17,7 +17,7 @@ export const sendVideogameAdd = async (videogame) => {
     );
 
     if (response.ok) {
-      return "Videogame successfully sent";
+      return `Videogame with name ${videogame.name} successfully sent `;
     } else {
       return "Failed to send videogame";
     }
@@ -89,6 +89,7 @@ export const sendVideogameUpdate = async (videogame, id) => {
       rating: videogame.rating ? videogame.rating : null,
       genres: videogame.genres ? videogame.genres : null,
       platforms: videogame.platforms ? videogame.platforms : null,
+      image: videogame.image ? videogame.image : null,
     };
 
     const response = await fetch(

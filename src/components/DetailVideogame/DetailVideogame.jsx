@@ -5,7 +5,7 @@ import { cleanVideogameDetail, getVideogameDetail } from "../../redux/actions";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { validate as validateUUID } from 'uuid'
-
+import style from "./_DetailVideogame.module.scss";
 
 
 const DetailVideogame = () => {
@@ -13,6 +13,8 @@ const DetailVideogame = () => {
     const dispatch = useDispatch();
     const videogameDetail = useSelector((state) => state.videogameDetail);
     const validateId = validateUUID(id);
+
+
 
     useEffect(() => {
         dispatch(getVideogameDetail(id));
@@ -42,43 +44,53 @@ const DetailVideogame = () => {
     }
 
     return (
-        <div>
-            <h1>Detail Videogame</h1>
-            <h2>{videogameDetail.name}</h2>
-            {/* <img src={videogameDetail.image} /> */}
-            <h3>Genres</h3>
-            <ul>
-                {videogameDetail.genres?.map((genre, index) => {
-                    return <li key={index}>{genre}</li>
-                })}
-            </ul>
-            <h3>Platforms</h3>
-            <ul>
-                {videogameDetail.platforms?.map((platform, index) => {
-                    return <li key={index}>{platform}</li>
-                })}
-            </ul>
-            <h3>Rating</h3>
-            <p>{videogameDetail.rating}</p>
-            <h3>Released</h3>
-            <p>{videogameDetail.released}</p>
-            <h3>Description</h3>
-            <p>{videogameDetail.description}</p>
+        <div className={style.Container}>
+            <img src={videogameDetail.image} />
+            <div className={style.Details}>
+                <h1>Detail Videogame</h1>
+                <h2>{videogameDetail.name}</h2>
+                <div className={style.List}>
+                    <h3>Platforms</h3>
+                    <ul >
+                        {videogameDetail.platforms?.map((platform, index) => {
+                            return <li key={index}>{platform}</li>
+                        })}
+                    </ul>
+                </div>
+                <div className={style.List}>
 
-            {
-                validateId ? <button onClick={deleteVideogame}>
-                    Delete
-                </button> : <span>This game cannot be deleted</span>
-            }
+                    <h3 >Genres</h3>
+                    <ul >
+                        {videogameDetail.genres?.map((genre, index) => {
+                            return <li key={index}>{genre}</li>
+                        })}
+                    </ul>
+                </div >
 
-            {validateId ? <Link to={`/edit/${id}`}>
-                <button>
-                    Edit
-                </button>
-            </Link> : <span>This videogame cannot be edited</span>}
+                <div className={style.Data}>
+                    <h3 className={style.Title_data}>Rating</h3>
+                    <p>{videogameDetail.rating}</p>
+                </div>
+                <div className={style.Data}>   
+                <h3 className={style.Title_data}>Released</h3>
+                <p>{videogameDetail.released}</p>
+                </div>
 
+                <h3>Description</h3>
+                <p>{videogameDetail.description}</p>
 
+                {
+                    validateId ? <Link to="/home"> <button onClick={deleteVideogame}>
+                        Delete
+                    </button></Link> : <span>This game cannot be deleted</span>
+                }
 
+                {validateId ? <Link to={`/edit/${id}`}>
+                    <button>
+                        Edit
+                    </button>
+                </Link> : <span>This videogame cannot be edited</span>}
+            </div>
 
         </div>
     )

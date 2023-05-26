@@ -1,0 +1,102 @@
+$color-light: #f5f0e1;
+$color-grayish: #bfb6a160;
+$color-dark: #634c36;
+$color-vibrant: #d9a769;
+$color-reddish: #c76969;
+$color-yellow: #ddb851;
+$color-blueish: #708c9c;
+$color-brown: #8b5a2b;
+$color-orange: #d9823c;
+$color-light-gray: #2c2b2bec;
+$color-darker-gray: #181616; // Gris más oscuro
+$darker-Gray-medium:#857862a9;
+.Ul {
+    // Estilos de la lista de plataformas 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    opacity: 0; // Inicialmente oculto
+    max-height: 0; // Inicialmente oculto
+    transition: opacity 0.8s ease, max-height 0.5s ease; // Transición suave
+    &.Open {
+      opacity: 1; // Mostrar cuando está abierto
+      max-height: 100%; // Mostrar cuando está abierto
+      transition: 0.8s;
+    }
+  }
+
+  .Title{
+    cursor: pointer;
+    font-size: 1.2vw;
+    font-weight: bold;
+ transition: 0.4s ease;
+ color:$darker-Gray-medium;
+
+    
+    &:hover{
+        scale: 1.03;
+        transition: 0.4s ease;
+        opacity: 1;
+    }
+
+  }
+
+  .Container{
+    position: relative;
+    width: 100%;
+ background-color: $color-light-gray;
+    border-bottom-left-radius: 6%;
+    border-bottom-right-radius: 6%;
+    font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+    padding-bottom: 3vh;
+
+
+    
+  
+  }
+
+
+  .Hr {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 0.1px;
+    border-color: $color-grayish;
+  }
+
+  .List{
+    display: flex;
+  justify-content: space-between;
+  padding-left: 1vw;
+    
+    color: $color-light;
+    font-size: 1vw;
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 5vh;
+  
+  }
+  
+
+  .Released{
+    display: flex;
+    justify-content: space-between;
+    font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+    padding-left: 1vw;
+      
+      color: $darker-Gray-medium;
+      font-size: 1vw;
+      display: flex;
+  
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 5%;
+      padding-right: 5%;
+      height: 5vh;
+  }
+
+

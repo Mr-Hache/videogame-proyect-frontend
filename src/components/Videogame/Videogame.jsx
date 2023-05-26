@@ -1,26 +1,37 @@
 import { Link } from 'react-router-dom';
 import ExtraVideogame from '../ExtraVideogame/ExtraVideogame';
+import style from './_Videogame.module.scss';
+import { useState } from 'react';
 
 const Videogame = (props) => {
     const { id, name, platforms, genres, image, rating, released } = props;
+
+    const [extraVideogameOpen, setExtraVideogameOpen] = useState(false);
+
+    const handleMouseEnter = () => {
+        setExtraVideogameOpen(true);
+    }
+
+    const handleMouseLeave = () => {
+        setExtraVideogameOpen(false);
+    }
     return (
-        <div>
-            {/* <img src={image} /> */}
+        
+        <div className={`${style.Container} ${extraVideogameOpen ? style.Active : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 
-            <h2>Platforms</h2>
-            <ul>
-                {platforms.map((platform, index) => {
-                    return <li key={index}>{platform}</li>
-                })}
-            </ul>
-            <Link to={`/detail/${id}`
-            }>
-                <h1>{name}</h1>
+            <img src={image} className={style.Image} />
+            <Link to={`/detail/${id}`} style={{textDecoration:'none'}}>
+                <h1 className={style.Name}>{name}</h1>
             </Link>
+            <hr className={style.Hr} />
+            <div className={style.Rating}>
+                <h2>Rating</h2>
+                <p className={style.Rating_numb}>{rating}</p>
+            </div>
 
-            <ExtraVideogame genres={genres} released={released} rating={rating} />
+            {extraVideogameOpen && <ExtraVideogame genres={genres} released={released} platforms={platforms} />
 
-
+            }
         </div>
     )
 }

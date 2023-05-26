@@ -11,9 +11,12 @@ $color-light-gray: #66666698;
 $color-darker-gray: #1A1A1A; // Gris más oscuro
 
 .button {
-  position: relative;
-  display: inline-block;
-  font-size: 3vh;
+  position: absolute;
+  align-items: center;
+  flex-direction: row;
+  text-decoration: none !important;
+  display: flex;
+  font-size: 1.3vw;
   font-weight: bold;
   text-transform: uppercase;
   color: $color-light;
@@ -25,7 +28,7 @@ $color-darker-gray: #1A1A1A; // Gris más oscuro
   z-index: 1;
   transition: background-color 0.5s, transform 0.5s;
   text-align: center;
-  padding: 0 0 1vh;
+  // padding: 0 0 0;
   height: 10vh;
   width: 8vw;
 }
@@ -57,41 +60,43 @@ $color-darker-gray: #1A1A1A; // Gris más oscuro
 }
 
 .button_1__image {
-  width: 40%;
+  width: 45%;
   position: relative;
-  top: 1vh;
 }
 
 .button_2__image {
-  width: 25%;
+  width: 30%;
   position: relative;
-  top: 1vh;
 }
 
 .button_3__image {
-  width: 25%;
+  width: 34%;
   position: relative;
-  top: 1vh;
+  
 }
 
 .button_1 {
   @extend .button;
-  left: 65vw;
-  bottom:18vh;
+
+  left: 66vw;
+  bottom:7.5vh;
+
 }
 
 .button_2 {
   @extend .button;
-  left: 66vw;
-  bottom: 19.5vh;
-  font-size: 2.8vh;
+  left: 75vw;
+  bottom: 7.5vh;
+
+
 }
 
 .button_3 {
   @extend .button;
-  left: 67vw;
-  bottom: 19.5vh;
-  font-size: 2.8vh;
+
+  left: 84vw;
+  bottom: 7.5vh;
+
 }
 
 .Image_icon{
@@ -106,6 +111,19 @@ $color-darker-gray: #1A1A1A; // Gris más oscuro
 }
 
 .Container{
-    background-color: $color-darker-gray ;
+  background-color: rgba(29, 29, 29, 10);
+    background-size: contain;
     height: 25vh;
+    background: linear-gradient(to bottom, #000000, #7d7d7d);
+    transition: all 0.3s ease; 
+    position: fixed;
+    width: 100%;   
+opacity: 0.87;
+box-shadow:  10px 3px 10px 10px rgba(0, 0, 0, 0.521);
+}
+
+.Container:hover {
+  transform: translateY(-3px);
+  background-color: #f8f8f8;
+  opacity: 1;
 }

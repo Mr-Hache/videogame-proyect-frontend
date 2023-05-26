@@ -1,0 +1,12 @@
+
+.Categorie{
+    cursor: pointer;
+}
+.Categorie_white{
+    @extend .Categorie; 
+    background-color: beige;
+}
+.Categorie_black{
+    @extend .Categorie;
+    background-color: transparent;
+}

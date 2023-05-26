@@ -1,3 +1,6 @@
+
+
+
 export const GET_VIDEOGAMES = "GET_VIDEOGAMES";
 export const GET_VIDEOGAME_DETAIL = "GET_VIDEOGAME_DETAIL";
 export const GET_GENRES = "GET_GENRES";
@@ -5,10 +8,11 @@ export const GET_PLATFORMS = "GET_PLATFORMS";
 export const CLEAN_VIDEOGAME_DETAIL = "CLEAN_VIDEOGAME_DETAIL";
 export const CLEAN_VIDEOGAMES = "CLEAN_VIDEOGAMES";
 export const GET_SOURCES = "GET_SOURCES";
-export const CHANGE_FILTER_BY_GENRE = "CHANGE_FILTER_BY_GENRE";
-export const CHANGE_FILTER_BY_PLATFORM = "CHANGE_FILTER_BY_PLATFORM";
-export const CHANGE_FILTER_BY_SOURCE = "CHANGE_FILTER_BY_SOURCE";
+export const CHANGE_FILTER = "CHANGE_FILTER";
 export const CHANGE_STATE_SEARCH = "CHANGE_STATE_SEARCH";
+export const CHANGE_PAGE = "CHANGE_PAGE";
+
+
 
 
 
@@ -216,37 +220,35 @@ export const cleanVideogames = () => {
   };
 };
 
-export const changeFilterByGenre = (genre) => {
-    return {
-        type: CHANGE_FILTER_BY_GENRE,
-        payload: genre
-    };
-};
 
-export const changeFilterByPlatform = (platform) => {
-  return {
-    type: CHANGE_FILTER_BY_PLATFORM,
-    payload: platform
-  };
-};
 
-export const changeFilterBySource = (source) => {
-  return {
-    type: CHANGE_FILTER_BY_SOURCE,
-    payload: source
-  };
-};
-
-export const changeOrderBy = (games) => {
-  return {
-    type: GET_VIDEOGAMES,
-    payload: games
-  };
-}
 
 export const changeStateSearch = (state) => {
   return {
     type: CHANGE_STATE_SEARCH,
     payload: state
+  };
+}
+
+export const changeFilter = (data) => {
+  
+  return {
+    type: CHANGE_FILTER,
+    payload: data
+  };
+}
+
+export const orderBy = (games) => {
+  return {
+    type: GET_VIDEOGAMES,
+    payload: games
+  };
+
+}
+
+export const changePage = (page) => {
+  return {
+    type: CHANGE_PAGE,
+    payload: page
   };
 }

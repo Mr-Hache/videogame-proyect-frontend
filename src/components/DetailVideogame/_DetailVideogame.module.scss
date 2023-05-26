@@ -1,0 +1,117 @@
+$color-light: #f5f0e1;
+$color-grayish: #bfb6a160;
+$color-dark: #634c36;
+$color-vibrant: #d9a769;
+$color-reddish: #c76969;
+$color-yellow: #ddb851;
+$color-blueish: #708c9c;
+$color-brown: #8b5a2b;
+$color-orange: #d9823c;
+$color-light-gray: #6666662f;
+$color-darker-gray: #1A1A1A; // Gris más oscuro
+$darker-Gray-medium:#857862a9;  
+
+
+.Container {
+    background-color: $color-darker-gray;
+    padding: 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 26.1vh;
+  
+    display: flex;
+    align-items: flex-start;
+  
+    img {
+      width: 40%;
+      height: 40%;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.5s ease;
+      transition: 0.3s;
+  
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        scale: 1.03;
+        transition: 0.3s;
+      }
+    }
+  
+    .Details {
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+  
+      h1 {
+        color: $color-light;
+        font-size: 2vw;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px $color-dark;
+        height: 2vh;
+  
+        &:hover {
+          color: $color-vibrant;
+          transition: color 0.3s ease;
+          scale: 1.03;
+          transition: scale 0.3s ease;
+        }
+      }}
+  
+      h2 {
+        color: $color-light;
+        font-size: 2vw;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px $color-dark;
+        height: 2vh;
+      }
+  
+  
+  }
+
+  .Ul {
+    // Estilos de la lista de plataformas 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    opacity: 0; // Inicialmente oculto
+    max-height: 0; // Inicialmente oculto
+    transition: opacity 0.8s ease, max-height 0.5s ease; // Transición suave
+    &.Open {
+      opacity: 1; // Mostrar cuando está abierto
+      max-height: 100%; // Mostrar cuando está abierto
+      transition: 0.8s;
+    }
+  }
+  .List{
+        
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1vw;
+      
+      color: $color-light;
+      font-size: 1vw;
+      display: flex;
+  
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 5%;
+      padding-right: 5%;
+      height: 20vh;
+  }
+
+  .Data{
+    @extend .List;
+    height: 3vh;
+  }
+
+.Title_list{
+ margin-right: 10vw;
+
+}
+
+.Title_data{
+ margin-right: 5vw;
+}

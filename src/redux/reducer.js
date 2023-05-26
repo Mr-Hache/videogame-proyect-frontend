@@ -6,10 +6,9 @@ import {
 
   CLEAN_VIDEOGAME_DETAIL,
   CLEAN_VIDEOGAMES,
-  CHANGE_FILTER_BY_GENRE,
-  CHANGE_FILTER_BY_PLATFORM,
-  CHANGE_FILTER_BY_SOURCE,
+  CHANGE_FILTER,
     CHANGE_STATE_SEARCH,
+    CHANGE_PAGE,
 } from "./actions";
 
 const initialState = {
@@ -21,10 +20,13 @@ const initialState = {
     { id: 1, name: "api" },
     { id: 2, name: "bd" },
   ],
-    filterByGenre: "",
-    filterByPlatform: "",
-    filterBySource: "",
+filter:{
+    filterByGenre: { id: 0, name: "all" },
+    filterByPlatform: { id: 0, name: "all" },
+    filterBySource: { id: 0, name: "all"}
+},
     stateSearch: false,
+    page : 1,
 
 
 };
@@ -61,25 +63,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         videogames: [],
       };
-    case CHANGE_FILTER_BY_GENRE:
+    case CHANGE_FILTER:
       return {
         ...state,
-        filterByGenre: action.payload,
+        filter: action.payload,
       };
-    case CHANGE_FILTER_BY_PLATFORM:
-      return {
-        ...state,
-        filterByPlatform: action.payload,
-      };
-    case CHANGE_FILTER_BY_SOURCE:
-      return {
-        ...state,
-        filterBySource: action.payload,
-    };
+    
     case CHANGE_STATE_SEARCH:
         return {
             ...state,
             stateSearch: action.payload,
+        };
+    case CHANGE_PAGE:
+        return {
+            ...state,
+            page: action.payload,
         };
 
 

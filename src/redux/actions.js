@@ -17,11 +17,11 @@ export const CHANGE_PAGE = "CHANGE_PAGE";
 
 
 const urlGames =
-  "https://videogame-proyect-backend-production.up.railway.app/videogames";
+  "https://videogames-project-backend.vercel.app/videogames";
 const urlGenres =
-  "https://videogame-proyect-backend-production.up.railway.app/genres";
+  "https://videogames-project-backend.vercel.app/genres";
 const urlPlatforms =
-  "https://videogame-proyect-backend-production.up.railway.app/platforms";
+  "https://videogames-project-backend.vercel.app/platforms";
 
 export const getVideogames = (page = 1, size = 15) => {
   return async (dispatch) => {

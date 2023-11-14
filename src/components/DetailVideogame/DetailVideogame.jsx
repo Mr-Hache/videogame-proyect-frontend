@@ -25,7 +25,7 @@ const DetailVideogame = () => {
 
     const deleteVideogame = async () => {
         try {
-            const response = await fetch(`https://videogame-proyect-backend-production.up.railway.app/videogames/${id}`, {
+            const response = await fetch(`https://videogames-project-backend.vercel.app/videogames/${id}`, {
                 method: "DELETE",
 
             });

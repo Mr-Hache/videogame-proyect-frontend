@@ -6,7 +6,7 @@ export const sendVideogameAdd = async (videogame) => {
   );
   try {
     const response = await fetch(
-      "https://videogame-proyect-backend-production.up.railway.app/videogames",
+      "https://videogames-project-backend.vercel.app/videogames",
       {
         method: "POST",
         headers: {
@@ -48,7 +48,7 @@ export const sendVideogameAdd = async (videogame) => {
 
 //   try {
 //     const response = await fetch(
-//       `https://videogame-proyect-backend-production.up.railway.app/videogames/${id}`,
+//       `https://videogames-project-backend.vercel.app/videogames/${id}`,
 //       {
 //         method: "PUT",
 //         headers: {
@@ -93,7 +93,7 @@ export const sendVideogameUpdate = async (videogame, id) => {
     };
 
     const response = await fetch(
-      `https://videogame-proyect-backend-production.up.railway.app/videogames/${id}`,
+      `https://videogames-project-backend.vercel.app/videogames/${id}`,
       {
         method: "PUT",
         headers: {
